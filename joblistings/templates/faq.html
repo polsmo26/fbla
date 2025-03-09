@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+            <section class="py-5">
+                <div class="container px-5 my-5">
+                    <div class="text-center mb-5">
+                        <h1 class="fw-bolder">Frequently Asked Questions</h1>
+                        <p class="lead fw-normal text-muted mb-0">How can we help you?</p>
+                    </div>
+                    <div class="row gx-5">
+                        <div class="col-xl-8">
+                            <!-- FAQ Accordion 1-->
+                            <h2 class="fw-bolder mb-3">Account &amp; Technical Support</h2>
+                            <div class="accordion mb-5" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Accordion Item #1</button></h3>
+                                    <div class="accordion-collapse collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <strong>How do I create an account on Workly?</strong>
+                                            Joining Workly is quick and straightforward. Simply click the "Sign Up" button located at the top of the page, and you'll be guided through the registration process. You'll need to provide a valid email address, create a secure password, and fill in some basic profile information such as your name and professional background. Once your account is created, you can start browsing available job listings, saving your favorite opportunities, and applying directly through the platform. Building out your profile with skills, work experience, and a resume will help employers find you more easily.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="headingTwo"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Accordion Item #2</button></h3>
+                                    <div class="accordion-collapse collapse" id="collapseTwo" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <strong>I forgot my password. How can I reset it?</strong>
+                                            No problem at all! If you’re unable to log into your account because of a forgotten password, head over to the login page and click the "Forgot Password?" link below the password field. You’ll be prompted to enter the email address associated with your account. After submitting your email, we’ll send you a password reset link. Follow the link, create a new password, and you’ll regain access to your account in just a few minutes. If you don’t see the email, make sure to check your spam or junk folders.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="headingThree"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Accordion Item #3</button></h3>
+                                    <div class="accordion-collapse collapse" id="collapseThree" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <strong>Can I edit my profile after creating it?</strong>
+                                            Yes, your Workly profile is fully customizable and can be updated whenever you like. Once you log into your account, navigate to your profile page and select the "Edit Profile" option. From there, you can update your bio, add new skills, upload a fresh resume, and modify your work experience to keep your profile current. Keeping your information up to date increases your chances of being noticed by employers and ensures you’re matched with jobs that fit your qualifications.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- FAQ Accordion 2-->
+                            <h2 class="fw-bolder mb-3">Website Issues</h2>
+                            <div class="accordion mb-5 mb-xl-0" id="accordionExample2">
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne2" aria-expanded="true" aria-controls="collapseOne2">Accordion Item #1</button></h3>
+                                    <div class="accordion-collapse collapse show" id="collapseOne2" aria-labelledby="headingOne" data-bs-parent="#accordionExample2">
+                                        <div class="accordion-body">
+                                            <strong>Why am I having trouble logging in?</strong>
+                                            If you’re having difficulty logging into your account, start by double-checking that you're using the correct email and password combination. Pay attention to any capitalization or extra spaces, as passwords are case-sensitive. If you're still unable to access your account, try resetting your password. It can also help to clear your browser's cache and cookies or attempt to log in from a different browser or device. Occasionally, high traffic may cause brief login issues, so waiting a few minutes and trying again can also resolve the problem.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="headingTwo"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo2">Accordion Item #2</button></h3>
+                                    <div class="accordion-collapse collapse" id="collapseTwo2" aria-labelledby="headingTwo" data-bs-parent="#accordionExample2">
+                                        <div class="accordion-body">
+                                            <strong>Why isn't my job application going through?</strong>
+                                            There are a few common reasons why an application might not submit properly. First, double-check that all required fields are completed accurately, including your resume upload, cover letter, and any additional questions the employer has provided. Ensure your resume is in an accepted format (such as PDF or DOCX) and doesn’t exceed the file size limit. If you continue to experience issues, try refreshing the page, clearing your browser cache, or switching to a different browser. If problems persist, please reach out to our support team for assistance.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="headingThree"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree2" aria-expanded="false" aria-controls="collapseThree2">Accordion Item #3</button></h3>
+                                    <div class="accordion-collapse collapse" id="collapseThree2" aria-labelledby="headingThree" data-bs-parent="#accordionExample2">
+                                        <div class="accordion-body">
+                                            <strong>What should I do if a job listing seems outdated or incorrect?</strong>
+                                            We strive to keep our job listings as accurate and up-to-date as possible. However, if you come across a job posting that appears to be outdated, closed, or contains incorrect information, we encourage you to let us know. You can report the listing directly by clicking the "Report Job" button found on the job’s detail page. Provide any relevant details so our team can review and take appropriate action. Your feedback helps us maintain a high-quality experience for all users and ensures that the opportunities on Workly remain reliable.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="card border-0 bg-light mt-xl-5">
+                                <div class="card-body p-4 py-lg-5">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <div class="text-center">
+                                            <div class="h6 fw-bolder">Have more questions?</div>
+                                            <p class="text-muted mb-4">
+                                                Contact us at
+                                                <br />
+                                                <a href="#!">support@bcths.org</a>
+                                            </p>
+                                            <div class="h6 fw-bolder">Follow us</div>
+                                            <a class="fs-5 px-2 link-dark" href="#!"><i class="bi-twitter"></i></a>
+                                            <a class="fs-5 px-2 link-dark" href="#!"><i class="bi-facebook"></i></a>
+                                            <a class="fs-5 px-2 link-dark" href="#!"><i class="bi-linkedin"></i></a>
+                                            <a class="fs-5 px-2 link-dark" href="#!"><i class="bi-youtube"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        {% endblock content %}

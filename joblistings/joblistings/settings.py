@@ -10,8 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-TIME_ZONE = 'America/New_York'  # Replace with your timezone
-USE_TZ = True
 
 from pathlib import Path
 import os
@@ -19,7 +17,6 @@ import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -32,7 +29,6 @@ SECRET_KEY = 'django-insecure-=#(2w-_d6!bol*3s6qeo#(33z^dcq&9*k58a6n)olhr771ewq)
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-
 
 # Application definition
 
@@ -88,7 +84,6 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-    # "default":dj_database_url.config(default=os.getenv("DATABASE_URL"))
 }
 
 
@@ -116,12 +111,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
-
 USE_I18N = True
 
 USE_TZ = True
 
+TIME_ZONE = 'America/New_York'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
@@ -137,8 +131,6 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# MEDIA_ROOT = BASE_DIR / 'media'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -146,7 +138,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
-LOGOUT_REDIRECT_URL = '/'  # Replace 'home' with the name of the page you want to redirect to
+LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 
 # SMTP Email Configuration
@@ -154,7 +146,6 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"  # Change for other providers
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = "moonkiwi008@gmail.com"
 EMAIL_HOST_USER = "pjsmolyanskiy@gmail.com"
 EMAIL_HOST_PASSWORD = "eqyz sizt tlhg rrmy" 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER  # Default sender

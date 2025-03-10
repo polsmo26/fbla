@@ -1,9 +1,12 @@
+#imports
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+#creating a model for Job Posting form
 class JobPosting(models.Model):
+    # all fields used in form and filled in by the employer
     title = models.CharField(max_length=200)
     company = models.CharField(max_length=200)
     description = models.TextField()
@@ -16,7 +19,9 @@ class JobPosting(models.Model):
     def __str__(self):
         return self.title
     
+#creating a model for Job Application form
 class JobApplication(models.Model):
+    # all fields used in form and filled in by the applicant
     job = models.ForeignKey(JobPosting, on_delete = models.CASCADE, related_name = 'applications')
     applicant = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, related_name = 'job_applications')
     applicant_name = models.CharField(max_length=200)
@@ -27,3 +32,7 @@ class JobApplication(models.Model):
     
     def __str__(self):
         return f"{self.applicant_name} - {self.job.title}"
+    
+    
+    
+    

@@ -25,14 +25,17 @@ def faq(request):
 
 def login(request):
     if request.method == 'POST':
+        # connecting input fields to user profile
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         form = AuthenticationForm(request, data=request.POST)
+        # if inputs are valid, user is logged in and a success message shows
         if form.is_valid():
             login(request, user)
             messages.success(request, 'Login successful!')
             return redirect('index')
+    # if inputs are invalid, error message shows and user is prompted to retry the form
         else:
             for field, errors in form.errors.items():
                 for error in errors:
@@ -41,6 +44,7 @@ def login(request):
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
 
+#logout view
 def custom_logout(request):
     logout(request)
     return redirect('/')
@@ -54,28 +58,8 @@ def job_detail(request, job_id):
     job = get_object_or_404(JobPosting, id=job_id)
     return render(request, 'job_detail.html', {'job':job})
 
-@login_required
-def post_job(request):
-    if request.user.profile.user_type != 'employer':
-        return redirect('index')
-    if request.method == 'POST':
-        form = JobPostingForm(request.POST)
-        if form.is_valid():
-            job = form.save(commit=False)
-            job.posted_by = request.user
-            job.save()
-            messages.success(request, 'Job posted succesfully!')
-            return redirect('employer_dashboard')
-        else:
-            for field, errors in form.errors.items():
-                for error in errors:
-                    messages.error(request, f"{field}: {error}")
-    else:
-        form = JobPostingForm()
-    return render(request, 'post_job.html', {'form':form})
 
-
-
+# contact page
 def contact(request):
     if request.method == "POST":
         # Extract form data from POST request
@@ -101,7 +85,7 @@ def contact(request):
                 subject, 
                 message_body, 
                 settings.EMAIL_HOST_USER,  # From Email
-                ['sandy.laine6@gmail.com'],  # To Email 
+                ['sandy.laine6@gmail.com'],  # To Email (spare email Polina has)
                 fail_silently=False,
             )
             messages.success(request, "Your message has been sent successfully!")
@@ -116,7 +100,6 @@ def contact_success(request):
     return render(request, "contact_success.html")
 
 #login requirements
-
 @login_required
 def employer_dashboard(request):
     if not hasattr(request.user, 'profile') or request.user.profile.user_type != 'employer':
@@ -130,7 +113,6 @@ def applicant_dashboard(request):
     if not hasattr(request.user, 'profile') or request.user.profile.user_type != 'applicant':
         return redirect('index')
     job_applications = JobApplication.objects.filter(applicant=request.user)
-    # print("job applications:", job_applications)
     return render(request, 'applicant_dashboard.html', {'job_applications':job_applications})
 
 @login_required
@@ -144,8 +126,6 @@ def apply_for_job(request, job_id):
             application = form.save(commit = False)
             application.job = job
             application.applicant = request.user
-            # application.applicant_name = request.user.username
-            # application.applicant_email = request.user.email
             application.save()
             messages.success(request, 'Application submitted successfully!')
             return redirect('applicant_dashboard')
@@ -157,6 +137,29 @@ def apply_for_job(request, job_id):
         form = JobApplicationForm()
     return render(request, 'apply_for_job.html', {'form':form, 'job':job})
 
+@login_required
+def post_job(request):
+    if request.user.profile.user_type != 'employer':
+        return redirect('index')
+    if request.method == 'POST':
+        form = JobPostingForm(request.POST)
+        if form.is_valid():
+            job = form.save(commit=False)
+            job.posted_by = request.user
+            job.save()
+            messages.success(request, 'Job posted succesfully!')
+            return redirect('employer_dashboard')
+        else:
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{field}: {error}")
+    else:
+        form = JobPostingForm()
+    return render(request, 'post_job.html', {'form':form})
+
+
+
+# blog pages on the bottom of index page
 def job_tips_page1(request):
     context = {
         "title": "🚀 Landing Your Dream Job: Top Tips for Success",

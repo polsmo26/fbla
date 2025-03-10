@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
-# from django.contrib import messages
 from django.conf import settings
 from .models import JobPosting, JobApplication
 from .forms import JobApplicationForm, ContactForm, JobPostingForm
@@ -20,9 +19,6 @@ def index(request):
 
 def about(request):
     return render(request, 'about.html')
-
-def contact(request):
-    return render(request, 'contact.html')
 
 def faq(request):
     return render(request, 'faq.html')
@@ -38,11 +34,12 @@ def login(request):
             messages.success(request, 'Login successful!')
             return redirect('index')
         else:
-            messages.error(request, 'Error: Invalid username or password.')
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{field}: {error}")
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
-    # return render(request, 'login.html')
 
 def custom_logout(request):
     logout(request)
@@ -70,7 +67,9 @@ def post_job(request):
             messages.success(request, 'Job posted succesfully!')
             return redirect('employer_dashboard')
         else:
-            messages.error(request, 'Error found in form')
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{field}: {error}")
     else:
         form = JobPostingForm()
     return render(request, 'post_job.html', {'form':form})
@@ -79,26 +78,39 @@ def post_job(request):
 
 def contact(request):
     if request.method == "POST":
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        phone = request.POST.get('phone')
-        message = request.POST.get('message')
+        # Extract form data from POST request
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        phone = request.POST.get("phone")
+        message = request.POST.get("message")
 
-        # # (Optional) Send an email notification
-        # send_mail(
-        #     subject=f"New Contact Form Submission from {name}",
-        #     message=f"Name: {name}\nEmail: {email}\nPhone: {phone}\n\nMessage:\n{message}",
-        #     from_email='your-email@example.com',  # Replace with your email
-        #     recipient_list=['your-email@example.com'],  # Replace with your email
-        #     fail_silently=False,
-        # )
+        # Email subject & message body
+        subject = f"New Contact Form Submission from {name}"
+        message_body = f"""
+        Name: {name}
+        Email: {email}
+        Phone: {phone}
 
-        # Flash a success message
-        messages.success(request, "Your message has been successfully sent!")
+        Message:
+        {message}
+        """
 
-        return redirect('contact_success')  # Redirect to a success page
+        # Send email with error handling
+        try:
+            send_mail(
+                subject, 
+                message_body, 
+                settings.EMAIL_HOST_USER,  # From Email
+                ['sandy.laine6@gmail.com'],  # To Email 
+                fail_silently=False,
+            )
+            messages.success(request, "Your message has been sent successfully!")
+        except Exception as e:
+            messages.error(request, f"Failed to send message: {e}")
 
-    return render(request, "contact.html")
+        return redirect("contact")  # Redirect back to contact page
+    return render(request, 'contact.html')
+
 
 def contact_success(request):
     return render(request, "contact_success.html")
@@ -138,76 +150,45 @@ def apply_for_job(request, job_id):
             messages.success(request, 'Application submitted successfully!')
             return redirect('applicant_dashboard')
         else:
-            messages.error(request, 'Error found in form')
-        
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{field}: {error}")
     else:
         form = JobApplicationForm()
     return render(request, 'apply_for_job.html', {'form':form, 'job':job})
 
-def contact_view(request):
-    if request.method == "POST":
-        name = request.POST.get("name")
-        email = request.POST.get("email")
-        phone = request.POST.get("phone")
-        message = request.POST.get("message")
+def job_tips_page1(request):
+    context = {
+        "title": "🚀 Landing Your Dream Job: Top Tips for Success",
+        "author_name": "Kelly Rowan",
+        "post_date": "March 12, 2023",
+        "read_time": "7",
+        "content": "Learn the key strategies to make your job application stand out and impress recruiters.",
+        "author_image": "https://i.imghippo.com/files/PA4969XUI.png",
+        "article_image": "https://www.mediabistro.com/wp-content/uploads/2022/05/bigstock-Work-Passion-To-Motivate-And-I-424449374-1536x1024.jpg",
+    }
+    return render(request, "job_tips1.html", context)
 
-        # Email subject & message body
-        subject = f"New Contact Form Submission from {name}"
-        message_body = f"""
-        Name: {name}
-        Email: {email}
-        Phone: {phone}
+def job_tips_page2(request):
+    context = {
+        "title": "💼 The Future of Work: Emerging Career Trends",
+        "author_name": "Josiah Barclay",
+        "post_date": "March 23, 2023",
+        "read_time": "4",
+        "content": "Discover the latest trends shaping the job market and how to prepare for them.",
+        "author_image": "https://i.imghippo.com/files/wz7902tOw.jpg",
+        "article_image": "https://www.classycareergirl.com/wp-content/uploads/2010/05/4-reasons-why-people-go-to-work.jpg",
+    }
+    return render(request, "job_tips2.html", context)
 
-        Message:
-        {message}
-        """
-
-        # Send email
-        send_mail(
-            subject, 
-            message_body, 
-            settings.EMAIL_HOST_USER,  # From Email
-            ['your-email@example.com'],  # To Email (replace with your email)
-            fail_silently=False,
-        )
-
-        messages.success(request, "Your message has been sent successfully!")
-        return redirect("contact")  # Redirect back to contact page
-
-    return render(request, "contact.html")
-
-
-
-# def register(request):
-#     if request.method == "POST":
-#         # form = UserCreationForm(request.POST)
-#         name = request.POST.get('name')
-#         username = request.POST.get('username')
-#         password1 = request.POST.get('password1')
-#         password2 = request.POST.get('password2')
-#         user_type = request.POST.get('user_type')
-#         if password1 != password2:
-#             messages.error(request, "Passwords do not match.")
-#             return redirect('register')
-
-#         if CustomUser.objects.filter(username=username).exists():
-#             messages.error(request, "Username already exists.")
-#             return redirect('register')
-        
-#         user = CustomUser.objects.create_user(
-#             username=username,
-#             password=password1,
-#             name=name,
-#             user_type=user_type,
-#         )
-#         messages.success(request, "Account created successfully!")
-#         return redirect('login')
-#         # if form.is_valid():
-#         #     form.save()
-#         #     messages.success(request, "Account created successfully!")
-#         #     return redirect('login')
-#         # else:
-#             # messages.error(request, 'Error in form submission!')
-#     else:
-#         form = UserCreationForm()
-#     return render(request, 'register.html', {'form':form})
+def job_tips_page3(request):
+    context = {
+        "title": "🎯 Resume Mistakes to Avoid & How to Fix Them",
+        "author_name": "Evelyn Martinez",
+        "post_date": "April 2, 2023",
+        "read_time": "10",
+        "content": "Make your resume recruiter-friendly with these simple yet powerful fixes.",
+        "author_image": "https://i.imghippo.com/files/wT7919lY.png",
+        "article_image": "https://theforage.wpengine.com/wp-content/uploads/2022/09/Depositphotos_95377176_L-1024x684.jpg",
+    }
+    return render(request, "job_tips3.html", context)

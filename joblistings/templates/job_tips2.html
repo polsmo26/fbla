@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="py-5">
+        <div class="container px-5">
+            <!-- Article Header -->
+            <div class="text-center mb-5">
+                <h1 class="fw-bolder">{{ title }}</h1>
+                <p class="text-muted">{{ post_date }} &middot; {{ read_time }} min read</p>
+            </div>
+
+            <!-- Article Image -->
+            <img class="img-fluid rounded mb-4" src="{{ article_image }}" alt="Article Image">
+
+            <!-- Article Content -->
+            <p class="lead">{{ content }}</p>
+
+            <!-- Author Information -->
+            <div class="d-flex align-items-center mt-5">
+                <img class="rounded-circle me-3" src="{{ author_image }}" height="50" width="50" alt="{{ author_name }}" />
+                <div class="small">
+                    <div class="fw-bold">{{ author_name }}</div>
+                    <div class="text-muted">{{ post_date }} &middot; {{ read_time }} min read</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div style="padding-bottom: 50px;">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac urna ut diam lobortis eleifend quis congue dolor. Nullam mattis sodales lorem. Aliquam mollis purus at maximus iaculis. Pellentesque sit amet fringilla purus, nec tincidunt erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam convallis sit amet risus a convallis. Nam porttitor dolor a ipsum placerat mollis. Suspendisse non ipsum dictum nisi ornare tempus. Phasellus porta, nisl non iaculis varius, arcu tellus mattis dui, id aliquam enim turpis eu urna. Nam posuere ultrices odio, non lacinia ante tristique et. Praesent bibendum eros ac enim rutrum interdum. Sed viverra commodo neque.</p>
+        <p>Vivamus eget tristique augue. Ut vulputate, libero at eleifend hendrerit, purus arcu fermentum metus, ac egestas orci ipsum ut libero. Praesent auctor laoreet lacus, et porta elit fermentum a. Mauris iaculis efficitur justo, in placerat lectus molestie eget. Aenean aliquet ipsum metus, et aliquam nulla pulvinar ac. Suspendisse luctus, mauris vitae luctus dignissim, magna mi faucibus orci, vitae egestas metus odio non eros. Fusce maximus vitae nisi eget congue.</p>
+        <p>Ut consectetur lectus in pretium bibendum. In at orci vel magna pulvinar pellentesque. Nunc finibus dui metus, feugiat commodo diam hendrerit eget. Praesent sit amet pulvinar libero. Phasellus dictum, lectus non mattis porta, urna tellus volutpat arcu, sed convallis mi purus quis enim. Fusce congue porttitor massa, a varius leo ornare in. Maecenas pharetra eros sit amet arcu commodo mollis. Nunc vestibulum purus a dui mattis blandit. Duis dapibus, lacus in congue interdum, risus purus placerat leo, a ultricies nibh ligula et dolor. Maecenas eu vulputate ligula. Aliquam dapibus vel erat pharetra condimentum. Maecenas dapibus enim nec lectus faucibus, eget ullamcorper purus tempor. Nullam eget laoreet mauris. Donec sed odio eget risus suscipit auctor. Donec accumsan ultrices mi, id ornare nisl egestas eu. Vestibulum vulputate diam eu aliquam scelerisque.</p>
+        <p>Nulla at hendrerit sem. In eget justo vehicula, venenatis tellus at, accumsan turpis. Integer viverra, nisi tristique suscipit lobortis, arcu sapien vestibulum lectus, vitae finibus arcu libero eu lectus. Mauris nec velit tortor. Aenean eleifend purus sed eros lacinia, sit amet facilisis turpis sollicitudin. Proin ac nunc quis arcu luctus laoreet. Duis vel volutpat est. Fusce maximus nunc elit, nec commodo arcu sollicitudin a. Nulla nec turpis nec dui sagittis pulvinar. Suspendisse vehicula quam ligula, nec euismod nunc pulvinar lobortis. Mauris tristique turpis ac arcu sodales ultricies. Curabitur nec pretium ipsum, id bibendum metus.</p>
+        <p>Etiam posuere feugiat nibh commodo aliquet. Suspendisse potenti. Sed pharetra nisi tellus, eget scelerisque sapien tincidunt sit amet. Ut convallis tristique mi, ac condimentum arcu consequat vel. Vivamus imperdiet consectetur nulla eu finibus. Etiam malesuada dolor non orci vulputate bibendum. Etiam ornare sagittis urna, a finibus lorem semper non. Fusce eget varius justo. Etiam luctus, mauris at pretium gravida, massa est malesuada turpis, in rhoncus nunc erat a arcu. Duis scelerisque sit amet ipsum eget egestas. Cras molestie, leo quis efficitur euismod, lorem augue porttitor arcu, eget lacinia lacus dolor ornare quam. Suspendisse rhoncus iaculis tristique.</p>
+    </div>
+{% endblock %}
+

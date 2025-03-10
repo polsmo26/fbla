@@ -21,14 +21,15 @@ from django.conf.urls.static import static
 from accounts import views as accounts_views
 # from django.contrib.auth.views import LogoutView
 from . import views
-from .views import post_job, apply_for_job, employer_dashboard, applicant_dashboard, job_list, job_detail, contact_view
+# from .views import post_job, apply_for_job, employer_dashboard, applicant_dashboard, job_list, job_detail, contact_view
+from .views import * 
 
 urlpatterns = [
     #basic urls
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('about/', views.about, name='about'),
-    path('contact/', contact_view, name='contact'),
+    path('contact/', views.contact, name='contact'),
     path('contact/success/', views.contact_success, name='contact_success'),
     path('faq/', views.faq, name='faq'),
     path('register/', accounts_views.register, name='register'),
@@ -44,4 +45,8 @@ urlpatterns = [
     path('employer-dashboard/', views.employer_dashboard, name='employer_dashboard'),
     path('applicant-dashboard/', views.applicant_dashboard, name='applicant_dashboard'), 
     path('logout/', views.custom_logout, name='logout'),
+    path("job-tips1/", job_tips_page1, name="job_tips1"),
+    path("job-tips2/", job_tips_page2, name="job_tips2"),
+    path("job-tips3/", job_tips_page3, name="job_tips3"),
+
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

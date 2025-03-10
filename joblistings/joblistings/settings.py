@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+TIME_ZONE = 'America/New_York'  # Replace with your timezone
+USE_TZ = True
+
 from pathlib import Path
 import os
 
@@ -147,5 +150,14 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"  # Change for other providers
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "sandy.laine6@gmail.com"  # Replace with your email
-EMAIL_HOST_PASSWORD = "eqyz sizt tlhg rrmy"  # Use an app password, not your actual password
+# EMAIL_HOST_USER = "moonkiwi008@gmail.com"
+EMAIL_HOST_USER = "pjsmolyanskiy@gmail.com"
+EMAIL_HOST_PASSWORD = "eqyz sizt tlhg rrmy" 
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER  # Default sender
+
+
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.SUCCESS:'success',
+    messages.ERROR: "danger",
+}

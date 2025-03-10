@@ -30,7 +30,9 @@ def register(request):
             messages.success(request, 'Account created successfully! You are now logged in.')
             return redirect('index')
         else:
-            messages.error(request, 'Error: Please correct your error in the form.')
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{field}: {error}")
     else:
         form = UserRegistrationForm()
     return render(request, 'register.html', {'form': form})

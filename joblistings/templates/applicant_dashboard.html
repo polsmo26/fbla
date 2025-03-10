@@ -11,7 +11,7 @@
                         <h2 class="card-title">{{ application.job.title }}</h2>
                         <p class="card-text">{{ application.job.description | truncatewords:20 }}</p>
                         <p class="card-text"><strong>Applied On: </strong> {{ application.date_applied }}</p>
-                        <p class="card-text"><strong>Status: </strong>Pending</p>
+                        <p class="card-text"><strong>Status: </strong>An employer will reach you through email</p>
                         <a href="{% url 'job_detail' application.job.id %}" class="btn btn-primary">View Job</a>
                         <a href="{{application.resume.url}}" target="_blank" class="btn btn-primary">View Resume</a>
                     </div>

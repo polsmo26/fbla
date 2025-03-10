@@ -9,7 +9,6 @@ class JobPosting(models.Model):
     description = models.TextField()
     location = models.CharField(max_length=100)
     salary = models.DecimalField(max_digits=10, decimal_places=2)
-    # date_posted = models.DateTimeField(auto_now_add=True)
     date_posted = models.DateTimeField(default=timezone.now)
     is_approved = models.BooleanField(default=False)
     posted_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, related_name = 'job_postings')

@@ -108,7 +108,7 @@ def contact(request):
         except Exception as e:
             messages.error(request, f"Failed to send message: {e}")
 
-        return redirect("contact")  # Redirect back to contact page
+        return redirect("contact") 
     return render(request, 'contact.html')
 
 
